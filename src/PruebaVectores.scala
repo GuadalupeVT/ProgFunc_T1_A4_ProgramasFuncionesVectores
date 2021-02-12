@@ -107,6 +107,13 @@ object PruebaVectores {
     varianza
   }
   
+  //Metodo para calcular la desviacion estandar
+  def calcularDesviacionEstandar(vector:Array[Double]): Double ={ 
+    var varianza=calcularVarianza(vector)
+    val desviacionEstandar=math.sqrt(varianza)
+    desviacionEstandar
+  }
+  
   
   
 
@@ -178,6 +185,12 @@ object PruebaVectores {
      if(menu ==8){
        val varianza=calcularVarianza(vector)
        println("La varianza es: "+varianza)
+     }
+     
+      //Caclular la desviacion estandar
+     if(menu ==9){
+       val desviacion=calcularDesviacionEstandar(vector)
+       println("La desviacion estandar es: "+desviacion)
      }
      
     }
