@@ -66,6 +66,17 @@ object PruebaVectores {
     moda
   }
   
+  //Metodo para calcular la mediana
+  def calcularMediana(vector:Array[Double]): Double ={  
+    var mediana=0.0
+    if(vector.length%2==0)
+      mediana = ((vector((vector.length-1)/2)) + (vector(((vector.length-1)/2)+1)))/2
+    else{
+      mediana = vector(((vector.length)/2).toInt)
+    }
+    mediana
+  }
+  
   
   
   
@@ -113,6 +124,13 @@ object PruebaVectores {
      if(menu ==4){
        val moda=calcularModa(vector)
        println("La moda es: "+moda)
+     }
+     
+     //Caclular mediana
+     if(menu ==5){
+       vector= ordenar(vector,n)
+       val mediana=calcularMediana(vector)
+       println("La mediana es: "+mediana)
      }
      
     }
