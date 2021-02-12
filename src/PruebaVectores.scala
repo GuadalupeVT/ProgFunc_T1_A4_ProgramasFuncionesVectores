@@ -2,14 +2,26 @@ import scala.io.StdIn._
 
 
 object PruebaVectores {
+  
   //Metodo para llenar el vector
-  def llenarVector(filas:Int, columnas:Int): Unit={
-    var numeros = Array.ofDim[Int](filas,columnas)
+  def llenarVector(filas:Int, columnas:Int): Array[Array[Double]]={
+    var numeros = Array.ofDim[Double](filas,columnas)
     for(f <- 0 until numeros.length; c <- 0 until numeros.length){
       println("Ingrese un numero para el espacio "+f+","+c)
-       numeros(f)(c) = readInt()
+       numeros(f)(c) = readDouble()
+    }
+    numeros
+  }
+  
+  //Metodo para imprimir vector
+  def imprimirVector(vector:Array[Array[Double]]):Unit={
+    for(f <- 0 until vector.length; c <- 0 until vector.length){
+      print(" "+vector(f)(c)+" ")
+      if(c==vector.length-1)
+        println()
     }
   }
+ 
   
   
   
@@ -18,7 +30,8 @@ object PruebaVectores {
     var filas=readInt()
     println("Ingrese el numero de columnas del vector: ")
     var columnas=readInt()
-    llenarVector(filas,columnas)
+    var vector=llenarVector(filas,columnas)
+    
     
     var menu=10
     while(menu>0){
@@ -36,6 +49,11 @@ object PruebaVectores {
       println("9) Desviación estándar")
       println("0) Salir")
       menu=readInt()
+      
+      //Opcion impresion
+      if(menu==1){
+        imprimirVector(vector)
+      }
     }
     
   }
