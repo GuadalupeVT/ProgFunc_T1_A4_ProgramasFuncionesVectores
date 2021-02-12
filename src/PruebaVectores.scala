@@ -87,12 +87,24 @@ object PruebaVectores {
   
   //Metodo para calcular la desviacion media
   def desviacionMedia(vector:Array[Double]): Double ={ 
-    var drm=desviacionRespectoDeLaMedia(vector)
+    var media=calcularMedia(vector)
     var sumatoria=0.0
-    for(i <- 0 until vector.length)
-      sumatoria=sumatoria+vector(i)
-    var dm= (1/vector.length) * sumatoria * drm
+   for(i <- 0 until vector.length)
+      sumatoria=sumatoria+(vector(i)-media)
+    
+    var dm=sumatoria/vector.length
     dm
+  }
+  
+  //Metodo para calcular la varianza
+  def calcularVarianza(vector:Array[Double]): Double ={ 
+   var media=calcularMedia(vector)
+    var sumatoria=0.0
+   for(i <- 0 until vector.length)
+      sumatoria=sumatoria+( (vector(i)-media)* (vector(i)-media) )
+    
+    var varianza=sumatoria/vector.length
+    varianza
   }
   
   
@@ -160,6 +172,12 @@ object PruebaVectores {
      if(menu ==7){
        val dm=desviacionMedia(vector)
        println("La desviacion media es: "+dm)
+     }
+     
+     //Caclular la varianza
+     if(menu ==8){
+       val varianza=calcularVarianza(vector)
+       println("La varianza es: "+varianza)
      }
      
     }
