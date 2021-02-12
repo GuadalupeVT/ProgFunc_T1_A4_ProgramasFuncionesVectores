@@ -4,56 +4,81 @@ import scala.util.Sorting
 object PruebaVectores {
   
   //Metodo para llenar el vector
-  def llenarVector(filas:Int, columnas:Int): Array[Array[Double]]={
-    var numeros = Array.ofDim[Double](filas,columnas)
-    for(f <- 0 until numeros.length; c <- 0 until numeros.length){
-      println("Ingrese un numero para el espacio "+f+","+c)
-       numeros(f)(c) = readDouble()
+  def llenarVector(n:Int): Array[Double]={
+    var numeros=new Array[Double](n)
+    numeros(0)=0.0
+    for(i <- 0 until numeros.length){
+      println("Ingrese un numero para el espacio "+i)
+       numeros(i)= readDouble()
     }
     numeros
   }
   
   //Metodo para imprimir vector
-  def imprimirVector(vector:Array[Array[Double]]):Unit={
-    for(f <- 0 until vector.length; c <- 0 until vector.length){
-      print(" "+vector(f)(c)+" ")
-      if(c==vector.length-1)
-        println()
+  def imprimirVector(vector:Array[Double]):Unit={
+    for(i <- 0 until vector.length){
+      print(" "+vector(i)+" ")
     }
+    println()
   }
   
   //Metodo para ordenar
-  def ordenar(vector:Array[Array[Double]], n:Int, m:Int):Array[Array[Double]]={
+  def ordenar(vector:Array[Double], n:Int):Array[Double]={
     var t=0.0
      for(i <- 0 to n-1){
-       for(j <- 0 to m-1){
          for(x <-0 to n-1){
-           for(y <- 0 to m-1){
-             if(vector(i)(j) < vector(x)(y)){
-               t=vector(i)(j)
-               vector(i)(j)=vector(x)(y)
-               vector(x)(y)=t
+             if(vector(i) < vector(x)){
+               t=vector(i)
+               vector(i)=vector(x)
+               vector(x)=t
              }
          }
-     }
-     }
      }
      vector
   }
   
+  //Metodo para calcular la media
+  def calcularMedia(vector:Array[Double]): Double ={
+    var media=0.0
+    var sumatoria=0.0
+    for(i <- 0 until vector.length){
+      sumatoria=sumatoria+vector(i)
+    }
+    media=sumatoria/vector.length
+    media
+  }
+  
+  //Metodo para calcular la moda
+  def calcularModa(vector:Array[Double]): Double ={
+    var max=0.0
+    var moda=0.0
+    for(i <- 0 until vector.length){
+      var repeticion=0.0
+      for(j <- 0 until vector.length){
+        if(vector(i)==vector(j))
+          repeticion+=1
+      if(repeticion>max){
+        moda=vector(i)
+        max=repeticion
+    }
+  }
+    }
+    moda
+  }
+  
+  
+  
   
 
   def main(args: Array[String]): Unit = {
-    println("Ingrese el numero de filas del vector: ")
-    var filas=readInt()
-    println("Ingrese el numero de columnas del vector: ")
-    var columnas=readInt()
-    var vector=llenarVector(filas,columnas)  
+    println("Ingrese el tamaño del vector: ")
+    var n=readInt()
+    var vector=llenarVector(n)  
     
     var menu=10
     while(menu>0){
       //Impresion de menu
-     println("-----------------MENU-------------")
+      println("-----------------MENU-------------")
       println("Selecciona una opcion...")
       println("1) Imprimir vector")
       println("2) Ordenar vector")
@@ -74,8 +99,22 @@ object PruebaVectores {
      
      //Opcion ordenar
      if(menu==2){
-       vector= ordenar(vector,filas, columnas)
+       vector= ordenar(vector,n)
+       imprimirVector(vector)
      }
+     
+     //Opcion calcular media
+     if(menu==3){
+       val media=calcularMedia(vector)
+       println("La media es: "+media)
+     }
+     
+     //Caclular moda
+     if(menu ==4){
+       val moda=calcularModa(vector)
+       println("La moda es: "+moda)
+     }
+     
     }
     
   }
