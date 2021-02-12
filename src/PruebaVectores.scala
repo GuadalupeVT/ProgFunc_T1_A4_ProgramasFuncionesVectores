@@ -1,5 +1,5 @@
 import scala.io.StdIn._
-
+import scala.util.Sorting
 
 object PruebaVectores {
   
@@ -21,17 +21,34 @@ object PruebaVectores {
         println()
     }
   }
- 
+  
+  //Metodo para ordenar
+  def ordenar(vector:Array[Array[Double]], n:Int, m:Int):Array[Array[Double]]={
+    var t=0.0
+     for(i <- 0 to n-1){
+       for(j <- 0 to m-1){
+         for(x <-0 to n-1){
+           for(y <- 0 to m-1){
+             if(vector(i)(j) < vector(x)(y)){
+               t=vector(i)(j)
+               vector(i)(j)=vector(x)(y)
+               vector(x)(y)=t
+             }
+         }
+     }
+     }
+     }
+     vector
+  }
   
   
-  
+
   def main(args: Array[String]): Unit = {
     println("Ingrese el numero de filas del vector: ")
     var filas=readInt()
     println("Ingrese el numero de columnas del vector: ")
     var columnas=readInt()
-    var vector=llenarVector(filas,columnas)
-    
+    var vector=llenarVector(filas,columnas)  
     
     var menu=10
     while(menu>0){
@@ -54,6 +71,11 @@ object PruebaVectores {
       if(menu==1){
         imprimirVector(vector)
       }
+     
+     //Opcion ordenar
+     if(menu==2){
+       vector= ordenar(vector,filas, columnas)
+     }
     }
     
   }
