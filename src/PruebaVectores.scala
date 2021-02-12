@@ -4,7 +4,11 @@ import scala.io.StdIn._
 object PruebaVectores {
   //Metodo para llenar el vector
   def llenarVector(filas:Int, columnas:Int): Unit={
-    
+    var numeros = Array.ofDim[Int](filas,columnas)
+    for(f <- 0 until numeros.length; c <- 0 until numeros.length){
+      println("Ingrese un numero para el espacio "+f+","+c)
+       numeros(f)(c) = readInt()
+    }
   }
   
   
