@@ -77,6 +77,14 @@ object PruebaVectores {
     mediana
   }
   
+  //Metodo para calcular la desviacion recpecto de la media
+  def desviacionRespectoDeLaMedia(vector:Array[Double]): Double ={ 
+    var media=calcularMedia(vector)
+    var moda=calcularModa(vector)
+    var drm=moda-media
+    drm
+  }
+  
   
   
   
@@ -131,6 +139,12 @@ object PruebaVectores {
        vector= ordenar(vector,n)
        val mediana=calcularMediana(vector)
        println("La mediana es: "+mediana)
+     }
+     
+      //Caclular la desviacion recpecto de la media
+     if(menu ==6){
+       val drm=calcularMediana(vector)
+       println("La desviacion recpecto de la media es: "+drm)
      }
      
     }
